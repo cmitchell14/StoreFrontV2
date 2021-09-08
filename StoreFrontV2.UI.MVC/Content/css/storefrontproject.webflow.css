@@ -2507,9 +2507,9 @@ blockquote {
     padding: 5px 25px;
     border-style: solid;
     border-width: 1px;
-    border-color: #eb5757;
+    border-color: #3898EC;
     border-radius: 5px;
-    background-color: #eb5757;
+    background-color: #3898EC;
     -webkit-transition: border-color 300ms ease, background-color 300ms ease;
     transition: border-color 300ms ease, background-color 300ms ease;
     font-weight: 700;
@@ -2899,7 +2899,7 @@ blockquote {
 
     .hero-section.about-hero {
         background-image: -webkit-gradient(linear, left bottom, left top, from(#222), to(rgba(34, 34, 34, 0))), url('../images/felix-rostig-UmV2wr-Vbq8-unsplash.jpg');
-        background-image: linear-gradient(360deg, #222, rgba(34, 34, 34, 0)), url('../images/felix-rostig-UmV2wr-Vbq8-unsplash.jpg');
+        background-image: linear-gradient(360deg, #222, rgba(34, 34, 34, 0)), url('../../Content/images/adventure.jpg');
         background-position: 0px 0px, 50% 60%;
         background-size: auto, cover;
     }
@@ -2921,7 +2921,7 @@ blockquote {
 .navbar {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #eb5757;
+    background-color: #3FA9EB;
 }
 
 .nav-link {
@@ -3277,13 +3277,13 @@ blockquote {
     top: 6%;
     right: auto;
     bottom: 0%;
-    width: 30%;
+    width: 40%;
     height: 0px;
     min-height: 440px;
     border-radius: 5px;
-    background-image: url('../images/christiann-koepke-dQyS2pMYtok-unsplash-1.jpg');
-    background-position: 69% 80%;
-    background-size: 270%;
+    background-image: url('../../Content/images/local.jpg');
+    background-position: 50% 80%;
+    background-size: 190%;
 }
 
 .shop-local-right {
@@ -3443,7 +3443,7 @@ blockquote {
     width: 45%;
     height: 90%;
     border-radius: 5px;
-    background-image: url('../images/sept-commercial-Cqu3DdNwtKQ-unsplash-1-1.jpg');
+    background-image: url('../../Content/images/CalebMikel.jpg');
     background-position: 50% 100%;
     background-size: cover;
 }
@@ -3663,7 +3663,6 @@ blockquote {
             right: 2%;
             bottom: auto;
             border-radius: 5px;
-            background-color: #eb5757;
             font-size: 14px;
             text-transform: uppercase;
         }

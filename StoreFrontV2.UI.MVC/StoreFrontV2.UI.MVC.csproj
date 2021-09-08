@@ -203,12 +203,17 @@
     <Content Include="Content\images\adam-solomon-WHUDOzd5IYU-unsplash-1-1-p-500.jpeg" />
     <Content Include="Content\images\adam-solomon-WHUDOzd5IYU-unsplash-1-1-p-800.jpeg" />
     <Content Include="Content\images\adam-solomon-WHUDOzd5IYU-unsplash-1-1.jpg" />
+    <Content Include="Content\images\adventure.jpg" />
     <Content Include="Content\images\backsWithPacksLogo.png" />
     <Content Include="Content\images\BacksWithPacksLogob&amp;w.png" />
+    <Content Include="Content\images\CalebAbout.jpg" />
+    <Content Include="Content\images\CalebMikel.jpg" />
     <Content Include="Content\images\cart.svg" />
+    <Content Include="Content\images\CartNew.jpg" />
     <Content Include="Content\images\cart_1.svg" />
     <Content Include="Content\images\chat-alt.svg" />
     <Content Include="Content\images\chat-warning.svg" />
+    <Content Include="Content\images\ChatNew.jpg" />
     <Content Include="Content\images\christiann-koepke-dQyS2pMYtok-unsplash-1-p-1080.jpeg" />
     <Content Include="Content\images\christiann-koepke-dQyS2pMYtok-unsplash-1-p-130x130q80.jpeg" />
     <Content Include="Content\images\christiann-koepke-dQyS2pMYtok-unsplash-1.jpg" />
@@ -242,7 +247,9 @@
     <Content Include="Content\images\jed-villejo-bEcC0nyIp2g-unsplash-1-1.jpg" />
     <Content Include="Content\images\John-Doe-p-130x130q80.png" />
     <Content Include="Content\images\John-Doe.png" />
+    <Content Include="Content\images\local.jpg" />
     <Content Include="Content\images\logo.svg" />
+    <Content Include="Content\images\Mikel.jpg" />
     <Content Include="Content\images\nathan-dumlao-pLoMDKtl-JY-unsplash-p-1080.jpeg" />
     <Content Include="Content\images\nathan-dumlao-pLoMDKtl-JY-unsplash-p-130x130q80.jpeg" />
     <Content Include="Content\images\nathan-dumlao-pLoMDKtl-JY-unsplash-p-500.jpeg" />
@@ -262,6 +269,7 @@
     <Content Include="Content\images\sept-commercial-Cqu3DdNwtKQ-unsplash-1-1-p-800.jpeg" />
     <Content Include="Content\images\sept-commercial-Cqu3DdNwtKQ-unsplash-1-1.jpg" />
     <Content Include="Content\images\transport.svg" />
+    <Content Include="Content\images\TransportNew.jpg" />
     <Content Include="Content\images\Triangle.svg" />
     <Content Include="Content\images\Twitter_Social_Icon_Rounded_Square_White.svg" />
     <Content Include="Content\images\verified.svg" />
@@ -270,6 +278,7 @@
     <Content Include="Content\images\vinicius-amano-4mK2KVuYrDs-unsplash-1-1-p-500.jpeg" />
     <Content Include="Content\images\vinicius-amano-4mK2KVuYrDs-unsplash-1-1-p-800.jpeg" />
     <Content Include="Content\images\vinicius-amano-4mK2KVuYrDs-unsplash-1-1.jpg" />
+    <Content Include="Content\images\warrantyIconNew.jpg" />
     <Content Include="Content\images\webclip.png" />
     <Content Include="Content\images\wu-jianxiong-UniC8xhlzaE-unsplash-p-1080.jpeg" />
     <Content Include="Content\images\wu-jianxiong-UniC8xhlzaE-unsplash-p-130x130q80.jpeg" />

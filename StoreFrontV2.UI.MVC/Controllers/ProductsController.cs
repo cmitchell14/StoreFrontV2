@@ -10,11 +10,13 @@ using StoreFrontV2.DATA.EF;
 
 namespace StoreFrontV2.UI.MVC.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
 
         // GET: Products
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Category).Include(p => p.ProductStatu).Include(p => p.Supplier);
@@ -37,6 +39,7 @@ namespace StoreFrontV2.UI.MVC.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.StatusID = new SelectList(db.Categories, "CategoryID", "CategoryName");
@@ -66,6 +69,7 @@ namespace StoreFrontV2.UI.MVC.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +107,7 @@ namespace StoreFrontV2.UI.MVC.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

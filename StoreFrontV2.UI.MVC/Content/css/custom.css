@@ -356,3 +356,9 @@ td,
 th {
     padding: 0;
 }
+
+
+#topLogo
+{
+    max-width:20%;
+}

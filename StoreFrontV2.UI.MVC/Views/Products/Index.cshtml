@@ -1,10 +1,104 @@
 ﻿@model IEnumerable<StoreFrontV2.DATA.EF.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Shop Our Products";
 }
 
-<h2>Index</h2>
+
+
+<div class="page-title-section wf-section">
+    <div class="container">
+        <h1 class="page-title">@ViewBag.Title</h1>
+    </div>
+</div>
+<div class="content-section featured-section wf-section">
+    <div class="container">
+        <div class="w-dyn-list">
+            <div role="list" class="w-dyn-items">
+                <div role="listitem" class="w-dyn-item">
+                    <a href="#" class="featured-wrapper w-inline-block">
+                        <div class="pill-2 badge primary featured">Featured Item</div>
+                        <div class="feature-text-wrapper">
+                            <h3 class="featured-item-name"></h3>
+                            <div class="featured-price"></div>
+                        </div>
+                        <div class="featured-gradient-overlay"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="w-dyn-empty">
+                <div>No items found.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-section wf-section">
+    <div class="container">
+        <div class="shop-page-wrapper">
+            <div class="shop-category-menu">
+                <h2 class="category-menu-heading w-richtext-align-center">Shop by Category</h2>
+                <div class="w-dyn-list">
+                    <div role="list" class="w-dyn-items">
+                        <div role="listitem" class="category-menu-item w-dyn-item">
+                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Category1</a>
+                            <div><br /></div>
+                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">CategorySumtin</a>
+                            <div><br /></div>
+                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">CategorySumtin</a>
+                            <div><br /></div>
+                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">CategorySumtin</a>
+                            <div><br /></div>
+                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">CategorySumtin</a>
+                        </div>
+                    </div>
+                    <div class="w-dyn-empty">
+                        <div>No items found.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-list">
+                <div class="products-list-wrapper w-dyn-list">
+                    <div role="list" class="products-list w-dyn-items">
+                        <div role="listitem" class="w-dyn-item">
+                            <div class="shop-item-wrapper">
+                                <a href="#" class="shop-item-link-wrapper w-inline-block">
+                                    <div class="shop-image tumbler-1 narrow-list">
+                                        <div class="pill-2 badge primary sale">Sale</div>
+                                    </div>
+                                    <div class="shop-details-wrapper">
+                                        <div class="shop-details-left">
+                                            <div class="shop-item-name"></div>
+                                            <div class="price-wrapper">
+                                                <div class="shop-item-price"></div>
+                                                <div class="shop-item-price compare"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="shop-button-wrapper">
+                                    <a href="#" class="btn w-button">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-dyn-empty">
+                        <div>No items found.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -44,44 +138,45 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitsInStock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitsOnOrder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProdImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductStatu.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductStatu.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+            </td>
+        </tr>
+    }
 
 </table>
