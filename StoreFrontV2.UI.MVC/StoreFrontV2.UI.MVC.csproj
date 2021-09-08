@@ -168,10 +168,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\ContactInformationsController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,6 +192,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\normalize.css" />
     <Content Include="Content\css\storefrontproject.webflow.css" />
     <Content Include="Content\css\webflow.css" />
@@ -195,6 +203,8 @@
     <Content Include="Content\images\adam-solomon-WHUDOzd5IYU-unsplash-1-1-p-500.jpeg" />
     <Content Include="Content\images\adam-solomon-WHUDOzd5IYU-unsplash-1-1-p-800.jpeg" />
     <Content Include="Content\images\adam-solomon-WHUDOzd5IYU-unsplash-1-1.jpg" />
+    <Content Include="Content\images\backsWithPacksLogo.png" />
+    <Content Include="Content\images\BacksWithPacksLogob&amp;w.png" />
     <Content Include="Content\images\cart.svg" />
     <Content Include="Content\images\cart_1.svg" />
     <Content Include="Content\images\chat-alt.svg" />
@@ -437,6 +447,41 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\EmailConfirmation.cshtml" />
     <Content Include="Views\Shared\_OriginalLayout.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\ContactInformations\Create.cshtml" />
+    <Content Include="Views\ContactInformations\Delete.cshtml" />
+    <Content Include="Views\ContactInformations\Details.cshtml" />
+    <Content Include="Views\ContactInformations\Edit.cshtml" />
+    <Content Include="Views\ContactInformations\Index.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\ProductStatus\Create.cshtml" />
+    <Content Include="Views\ProductStatus\Delete.cshtml" />
+    <Content Include="Views\ProductStatus\Details.cshtml" />
+    <Content Include="Views\ProductStatus\Edit.cshtml" />
+    <Content Include="Views\ProductStatus\Index.cshtml" />
+    <Content Include="Views\Suppliers\Create.cshtml" />
+    <Content Include="Views\Suppliers\Delete.cshtml" />
+    <Content Include="Views\Suppliers\Details.cshtml" />
+    <Content Include="Views\Suppliers\Edit.cshtml" />
+    <Content Include="Views\Suppliers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -449,6 +494,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreFrontV2.DATA.EF\StoreFrontV2.DATA.EF.csproj">
+      <Project>{1eb113dd-2ac3-4f2b-9ba1-07411418f428}</Project>
+      <Name>StoreFrontV2.DATA.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

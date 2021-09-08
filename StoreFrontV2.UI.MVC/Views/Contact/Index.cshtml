@@ -1,64 +1,123 @@
 ﻿@model StoreFrontV2.UI.MVC.Models.ContactViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Contact Us";
 }
 
-<h2>Index</h2>
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ContactViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+<div class="contact-hero-section wf-section">
+    <div class="contact-hero-bg-wrapper">
+        <div class="container contact">
+            <h1 class="heading">Contact Backs with Packs</h1>
+            <div class="contact-block-wrapper">
+                <div class="contact-block">
+                    <img src="~/Content/images/chat-alt.svg" alt="" class="contact-icon">
+                    <h2>Contact Us</h2>
+                    <p>Just want to say hi? We&#x27;d love to hear from you. We love our customers and community! </p>
+                    <a href="#contact" class="btn w-button">Send Us A Message</a>
+                </div>
+                <div class="contact-block">
+                    <img src="~/Content/images/chat-warning.svg" alt="" class="contact-icon">
+                    <h2>Get Support</h2>
+                    <p>Have an issue with an order or with a product you purchased from us? Fill out our support form.</p>
+                    <a href="https://c-mitchell.com" target="_blank" class="btn w-button">Contact Support</a>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        <div class="contact-image-div"></div>
+    </div>
+</div>
+<div id="contact" class="content-section wf-section">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-left">
+                <h2>Contact Us</h2>
+                <div class="w-richtext">
+                    <p>Backs with Packs<br>123 Rainy Street<br>Overland Park, KS 66210</p>
+                    <p>‍<br><strong>General Inquiries:</strong> (405) 555-5555<br><strong>Customer Support:</strong> (405) 555-5556</p>
+                </div>
             </div>
-        </div>
+            <div class="contact-right">
+                <h2>Contact Form</h2>
+                <p>Send us a message and we&#x27;ll get back to you as soon as we can! </p>
+                <!--**********************Contact Form ********************************-->
+                <div class="w-form">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @*<label for="name">Name</label><input type="text" class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your name" id="name">*@
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input w-input", placeholder = "Name" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @*<label for="name">Name</label><input type="text" class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your name" id="name">*@
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input w-input", placeholder = "Email" } })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                        @*<label for="email">Email Address</label><input type="email" class="input w-input" maxlength="256" name="email" data-name="Email" placeholder="Enter your email address" id="email" required="">*@
+                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "input w-input", placeholder = "Subject" } })
+
+                        @*<label for="Message">Your Message</label><textarea placeholder="Enter your message" maxlength="5000" id="Message" name="Message" data-name="Message" class="input w-input"></textarea>*@
+                        @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "input w-input", placeholder = "Message Body" } })
+
+                        <input type="submit" value="Submit" data-wait="Please wait..." class="btn w-button">
+
+                    }
+
+                </div>
+                <!--********************End Contact Form********************************-->
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
