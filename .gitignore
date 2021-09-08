@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# Prevent Senstive data from being submitted
+C:\Users\Student\Documents\Visual Studio 2017\Projects\12_PROJECT\StoreFrontV2\StoreFrontV2.UI.MVC\configs\
+/StoreFrontV2.UI.MVC/configs
