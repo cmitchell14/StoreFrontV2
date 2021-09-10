@@ -1,14 +1,55 @@
 ﻿@model StoreFrontV2.DATA.EF.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Html.DisplayFor(model => model.ProductName);
 }
 
-<h2>Details</h2>
+
+
+<div class="page-title-section wf-section">
+    <div class="container">
+        <h1 class="page-title">@Html.Raw(ViewBag.Title)</h1>
+    </div>
+</div>
+<div class="content-section wf-section">
+    <div class="container">
+        <div class="shopping-page-wrapper">
+            <div class="shopping-page-left">
+                <div>
+                    <a href="~/Content/images/ProductImages/@Model.ProdImage" alt="@Model.ProductName photo" target="_blank">
+                        <img src="~/Content/images/ProductImages/@Model.ProdImage" alt="@Model.ProductName photo" id="detailPhoto" />
+                    </a>
+                </div>
+            </div>
+            <div class="shipping-page-right">
+                <h2 class="page-product-headin">@Model.Description</h2>
+                <div class="page-price-wrapping">
+                    <div class="shop-item-price-page">@Html.DisplayFor(model => model.UnitPrice)</div>
+                </div>
+
+                <div>
+                    @if (Model.UnitsInStock > 0)
+                    {
+                        <form data-node-type="commerce-add-to-cart-form" class="w-commerce-commerceaddtocartform">
+                            <label for="quantity-8342fe54ad998bceba4bd86dd02b8e79">Quantity</label>
+                            <div class="add-to-cart-page-wrapper"><input type="number" pattern="^[0-9]+$" inputmode="numeric" id="quantity-8342fe54ad998bceba4bd86dd02b8e79" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput input cart-quantity" value="1"><input type="submit" value="Add To Cart" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." class="w-commerce-commerceaddtocartbutton btn outline"></div>
+                        </form>
+                    }
+                    @if (Model.UnitsInStock <= 0)
+                    {
+                        <p style="color:red">
+                            This product is currently out of stock.
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <div>
-    <h4>Product</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ProductName)

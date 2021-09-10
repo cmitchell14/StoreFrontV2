@@ -24,6 +24,7 @@ namespace StoreFrontV2.UI.MVC.Controllers
         }
 
         // GET: Products/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -53,10 +54,38 @@ namespace StoreFrontV2.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,CategoryID,StatusID,UnitPrice,UnitsInStock,UnitsOnOrder,SupplierID,Description,ProdImage")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,CategoryID,StatusID,UnitPrice,UnitsInStock,UnitsOnOrder,SupplierID,Description,ProdImage")] Product product, HttpPostedFileBase prodImage)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+
+                string imageName = "noImage.JPG";
+
+                if (prodImage != null)
+                {
+                    imageName = prodImage.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".jpg", ".png", ".jpeg", ".gif" };
+
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imageName = Guid.NewGuid() + ext;
+
+                        prodImage.SaveAs(Server.MapPath("~/Content/images/ProductImages/" + imageName));
+                    }
+                    else
+                    {
+                        imageName = "noImage.JPG";
+                    }
+                }
+
+                product.ProdImage = imageName;
+                #endregion
+
+
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,10 +121,38 @@ namespace StoreFrontV2.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,CategoryID,StatusID,UnitPrice,UnitsInStock,UnitsOnOrder,SupplierID,Description,ProdImage")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,CategoryID,StatusID,UnitPrice,UnitsInStock,UnitsOnOrder,SupplierID,Description,ProdImage")] Product product, HttpPostedFileBase prodImage)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+
+                if (prodImage != null)
+                {
+                    string imageName = prodImage.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".jpg", ".png", ".jpeg", ".gif" };
+
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imageName = Guid.NewGuid() + ext;
+
+                        prodImage.SaveAs(Server.MapPath("~/Content/images/ProductImages/" + imageName));
+
+                        if (product.ProdImage != "noImage.JPG" && product.ProdImage != null)
+                        {
+                            //delete old file
+                            System.IO.File.Delete(Server.MapPath("~/Content/images/ProductImages/" + product.ProdImage));
+                        }
+                    }
+
+                    product.ProdImage = imageName;
+                }
+
+                #endregion
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -177,6 +177,7 @@ namespace StoreFrontV2.DATA.EF//Metadata
         [StringLength(100, ErrorMessage = "Cannot exceed 100 characters")]
         [Display(Name = "Image")]
         public string ProdImage { get; set; }
+
         public virtual Category Category { get; set; }
         public virtual ProductStatu ProductStatu { get; set; }
         public virtual Supplier Supplier { get; set; }
@@ -223,7 +224,7 @@ namespace StoreFrontV2.DATA.EF//Metadata
     [MetadataType(typeof(SupplierMetadata))]
     public partial class Supplier
     {
-        //this is typically empty, unless you need to create custom properties
+        
     }
     #endregion
 }
