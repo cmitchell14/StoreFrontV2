@@ -1,4 +1,6 @@
-﻿@model IEnumerable<StoreFrontV2.DATA.EF.Product>
+﻿@*@model IEnumerable<StoreFrontV2.DATA.EF.Product>*@
+@model PagedList.IPagedList<StoreFrontV2.DATA.EF.Product>
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Shop Our Products";
@@ -28,14 +30,20 @@
 @if (User.IsInRole("Admin"))
 {
     <div class="shop-button-wrapper">
-        <a href=
-           "@Url.Action("Create", "Products")" class="btn" id="adminButton">Create New Product
+        <a href="@Url.Action("Create", "Products")" class="btn" id="adminButton">
+            Create New Product
         </a>
     </div>
 }
+
+
+
 <div class="content-section wf-section">
     <div class="container">
         <div class="shop-page-wrapper">
+            <div class="row">
+
+            </div>
             <div class="shop-category-menu">
                 <h2 class="category-menu-heading w-richtext-align-center">Shop by Category</h2>
                 <div class="w-dyn-list">
@@ -58,9 +66,21 @@
                     </div>
                 </div>
             </div>
+
             <div class="shop-list">
+                <div>
+                    @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+                    {
+                        <p style="text-align:right">
+                            Search Products: @Html.TextBox("SearchString", ViewBag.SearchString as string)
+                            <input type="submit" value="Search" class="btn btn-primary" />
+                        </p>
+                    }
+                </div>
+                <br />
                 <div class="products-list-wrapper w-dyn-list">
                     <div role="list" class="products-list w-dyn-items">
+
                         @foreach (var item in Model)
                         {
 
@@ -68,7 +88,7 @@
 
                                 <p id="centerText">@Html.DisplayFor(modelItem => item.ProductName)</p>
                                 <div class="shop-item-wrapper">
-                                    <a href="@Url.Action("Details", new { id=item.ProductID})" class="shop-item-link-wrapper w-inline-block">
+                                    <a href="@Url.Action("Details", new { id = item.ProductID })" class="shop-item-link-wrapper w-inline-block">
                                         <div>
                                             <img src="~/Content/images/ProductImages/@item.ProdImage" alt="@item.ProductName photo" id="centerPhoto" />
                                         </div>
@@ -84,7 +104,7 @@
                                         </div>
                                     </a>
                                     <div class="shop-button-wrapper">
-                                        <a href="@Url.Action("Details", new { id=item.ProductID})" class="btn w-button">Details</a>
+                                        <a href="@Url.Action("Details", new { id = item.ProductID })" class="btn w-button">Details</a>
                                     </div>
                                     @if (User.IsInRole("Admin"))
                                     {
@@ -102,6 +122,8 @@
                 </div>
             </div>
         </div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString }))
     </div>
 </div>
 
@@ -110,83 +132,85 @@
 
 
 
+
+
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitsInStock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitsOnOrder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProdImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductStatu.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Supplier.SupplierName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitsInStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitsOnOrder)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductStatu.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsOnOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductStatu.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier.SupplierName)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsInStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdImage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductStatu.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+                </td>
+            </tr>
+        }
+
+    </table>*@

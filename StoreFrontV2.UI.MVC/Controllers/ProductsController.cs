@@ -21,19 +21,19 @@ namespace StoreFrontV2.UI.MVC.Controllers
 
         // GET: Products
         [AllowAnonymous]
-        public ActionResult Index(/*string searchString, int page = 1*/)
+        public ActionResult Index(string searchString, int page = 1)
         {
-            //int pageSize = 10;
-            var products = db.Products.Include(p => p.Category).Include(p => p.ProductStatu).Include(p => p.Supplier);
+            int pageSize = 6;
+            var products = db.Products.OrderBy(x => x.ProductName).Include(p => p.Category).Include(p => p.ProductStatu).Include(p => p.Supplier).ToList();
 
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    products = db.Products.Where(x => x.ProductName.ToLower().Contains(searchString.ToLower()));
-            //}
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(x => x.ProductName.ToLower().Contains(searchString.ToLower())).ToList();
+            }
 
-            //ViewBag.SearchString = searchString;
+            ViewBag.SearchString = searchString;
 
-            return View(products.ToList/*Paged*/(/*page, pageSize*/));
+            return View(products.ToPagedList(page, pageSize));
         }
 
         // GET: Products/Details/5
