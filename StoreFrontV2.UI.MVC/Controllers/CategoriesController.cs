@@ -39,6 +39,7 @@ namespace StoreFrontV2.UI.MVC.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
             return View();
         }
 

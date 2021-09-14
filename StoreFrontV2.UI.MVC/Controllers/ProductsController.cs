@@ -7,8 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using StoreFrontV2.DATA.EF;
 using StoreFrontV2.UI.MVC.Utilities;
+using PagedList.Mvc;
 
 namespace StoreFrontV2.UI.MVC.Controllers
 {
@@ -19,10 +21,19 @@ namespace StoreFrontV2.UI.MVC.Controllers
 
         // GET: Products
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(/*string searchString, int page = 1*/)
         {
+            //int pageSize = 10;
             var products = db.Products.Include(p => p.Category).Include(p => p.ProductStatu).Include(p => p.Supplier);
-            return View(products.ToList());
+
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    products = db.Products.Where(x => x.ProductName.ToLower().Contains(searchString.ToLower()));
+            //}
+
+            //ViewBag.SearchString = searchString;
+
+            return View(products.ToList/*Paged*/(/*page, pageSize*/));
         }
 
         // GET: Products/Details/5
@@ -45,7 +56,8 @@ namespace StoreFrontV2.UI.MVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            ViewBag.StatusID = new SelectList(db.Categories, "CategoryID", "CategoryName");
+
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
             ViewBag.StatusID = new SelectList(db.ProductStatus, "StatusID", "Status");
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "SupplierName");
             return View();
@@ -114,7 +126,7 @@ namespace StoreFrontV2.UI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StatusID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.StatusID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
             ViewBag.StatusID = new SelectList(db.ProductStatus, "StatusID", "Status", product.StatusID);
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "SupplierName", product.SupplierID);
             return View(product);
@@ -133,7 +145,7 @@ namespace StoreFrontV2.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StatusID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.StatusID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
             ViewBag.StatusID = new SelectList(db.ProductStatus, "StatusID", "Status", product.StatusID);
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "SupplierName", product.SupplierID);
             return View(product);
@@ -248,5 +260,6 @@ namespace StoreFrontV2.UI.MVC.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }
