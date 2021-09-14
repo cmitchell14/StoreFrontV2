@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoreFrontV2.DATA.EF;
+using StoreFrontV2.UI.MVC.Utilities;
 
 namespace StoreFrontV2.UI.MVC.Controllers
 {
@@ -69,17 +71,38 @@ namespace StoreFrontV2.UI.MVC.Controllers
                     string ext = imageName.Substring(imageName.LastIndexOf("."));
 
                     string[] goodExts = new string[] { ".jpg", ".png", ".jpeg", ".gif" };
-
-                    if (goodExts.Contains(ext.ToLower()))
+                    if (goodExts.Contains(ext))
                     {
                         imageName = Guid.NewGuid() + ext;
 
-                        prodImage.SaveAs(Server.MapPath("~/Content/images/ProductImages/" + imageName));
+                        #region Resize Image
+
+                        //params for the Image Utility
+                        //What we need:  Filepath, Image File, maximum image size (full size), maximum thumb size (thumbnail)
+
+                        //filepath
+                        string savePath = Server.MapPath("~/Content/images/ProductImages/");
+
+                        //image file
+                        Image convertedImage = Image.FromStream(prodImage.InputStream);
+
+                        //Max image size
+                        int maxImageSize = 500; //value in pixels
+
+                        //Max Thumb size
+                        int maxThumbSize = 100;
+
+                        //Call the ImageUtility to do work
+                        ImageUtility.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
+
+                        #endregion
                     }
+
                     else
                     {
-                        imageName = "noImage.JPG";
+                        imageName = "NoImage.JPG";
                     }
+
                 }
 
                 product.ProdImage = imageName;
@@ -127,9 +150,11 @@ namespace StoreFrontV2.UI.MVC.Controllers
             {
                 #region File Upload
 
+                string imageName = "";
+
                 if (prodImage != null)
                 {
-                    string imageName = prodImage.FileName;
+                    imageName = prodImage.FileName;
 
                     string ext = imageName.Substring(imageName.LastIndexOf("."));
 
@@ -139,13 +164,34 @@ namespace StoreFrontV2.UI.MVC.Controllers
                     {
                         imageName = Guid.NewGuid() + ext;
 
-                        prodImage.SaveAs(Server.MapPath("~/Content/images/ProductImages/" + imageName));
+                        //file path
+                        string savePath = Server.MapPath("~/Content/images/ProductImages/");
+
+                        //image file
+                        Image convertedImage = Image.FromStream(prodImage.InputStream);
+
+                        //Max image size
+                        int maxImageSize = 500; //value in pixels
+
+                        //Max Thumb size
+                        int maxThumbSize = 100;
+
+                        //Call the ImageUtility to do work
+                        ImageUtility.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
 
                         if (product.ProdImage != "noImage.JPG" && product.ProdImage != null)
                         {
                             //delete old file
-                            System.IO.File.Delete(Server.MapPath("~/Content/images/ProductImages/" + product.ProdImage));
+                            string path = Server.MapPath("~/Content/images/ProductImages/");
+
+                            //Call Delete Method with path and filename
+                            ImageUtility.Delete(path, product.ProdImage);
                         }
+                    }
+
+                    else
+                    {
+                        imageName = "NoImage.JPG";
                     }
 
                     product.ProdImage = imageName;
@@ -185,6 +231,10 @@ namespace StoreFrontV2.UI.MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
+
+            string path = "~/Content/images/ProductImages/";
+            ImageUtility.Delete(path, product.ProdImage);
+
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");

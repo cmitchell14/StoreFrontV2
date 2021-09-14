@@ -1,39 +1,57 @@
 ﻿@model IEnumerable<StoreFrontV2.DATA.EF.Supplier>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Suppliers";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SupplierName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactInformation.Address)
-        </th>
-        <th></th>
-    </tr>
+<table class="table data-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactInformation.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SupplierName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactInformation.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SupplierID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SupplierID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SupplierID })
-        </td>
-    </tr>
-}
-
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactInformation.Address)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SupplierID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            $('.data-table').DataTable({
+                responsive: true
+            });
+        });
+
+    </script>
+
+}

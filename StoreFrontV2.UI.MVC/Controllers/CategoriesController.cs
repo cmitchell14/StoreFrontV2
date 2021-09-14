@@ -10,6 +10,7 @@ using StoreFrontV2.DATA.EF;
 
 namespace StoreFrontV2.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();

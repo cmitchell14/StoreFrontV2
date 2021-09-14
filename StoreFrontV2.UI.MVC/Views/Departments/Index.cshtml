@@ -1,33 +1,52 @@
 ﻿@model IEnumerable<StoreFrontV2.DATA.EF.Department>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Departments";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </th>
-        <th></th>
-    </tr>
+<table class="table data-table">
+    <
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DepartmentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentID })
-        </td>
-    </tr>
-}
-
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DepartmentID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            $('.data-table').DataTable({
+                responsive: true
+            });
+        });
+
+    </script>
+
+}

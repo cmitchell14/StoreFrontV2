@@ -49,91 +49,96 @@
 
 
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
+@*<div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryID)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryID)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryID)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UnitPrice)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.UnitPrice)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitsInStock)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UnitsInStock)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.UnitsInStock)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitsOnOrder)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitsOnOrder)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UnitsOnOrder)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.UnitsOnOrder)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProdImage)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProdImage)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProdImage)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ProdImage)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Category.CategoryName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductStatu.Status)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductStatu.Status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductStatu.Status)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ProductStatu.Status)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Supplier.SupplierName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Supplier.SupplierName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Supplier.SupplierName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Supplier.SupplierName)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>*@
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+

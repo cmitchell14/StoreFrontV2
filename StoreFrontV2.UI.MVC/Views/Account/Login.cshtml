@@ -4,11 +4,59 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
+
+<div id="contact" class="content-section wf-section">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-right">
+                <h2>Login</h2>
+                <p>Login for full access and exclusive deals!</p>
+                <!--**********************Login Form ********************************-->
+                <div class="w-form">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @*<label for="name">Name</label><input type="text" class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your name" id="name">*@
+                        @Html.TextBoxFor(m => m.Email, new { @class = "input w-input input w-input", placeholder = "Email" })
+
+                        @*<label for="email">Email Address</label><input type="email" class="input w-input" maxlength="256" name="email" data-name="Email" placeholder="Enter your email address" id="email" required="">*@
+                        @Html.PasswordFor(m => m.Password, new { @class = "input w-input input w-input", placeholder = "Password" })
+
+                        <input type="submit" value="Submit" data-wait="Please wait..." class="btn w-button">
+                        <div>
+                            <br />
+                        <p>
+                            @Html.ActionLink("Register a new user?", "Register")
+                        </p>
+                        <p>
+                            @Html.ActionLink("Forget your password?", "ForgotPassword")
+                        </p>
+                        </div>
+                    }
+
+                </div>
+                <!--********************End Login Form********************************-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+@*<div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
                 @Html.AntiForgeryToken()
                 <h4>Use a local account to log in.</h4>
                 <hr />
@@ -48,12 +96,12 @@
                 </p>
             }
         </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new StoreFront.UI.MVC.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
+    </div>*@
+    @*<div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new StoreFront.UI.MVC.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>*@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
