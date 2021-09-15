@@ -21,19 +21,33 @@ namespace StoreFrontV2.UI.MVC.Controllers
 
         // GET: Products
         [AllowAnonymous]
-        public ActionResult Index(string searchString, int page = 1)
+        public ActionResult Index(string searchString, string categoryFilter, int page = 1)
         {
+            ViewBag.CategoryFilter = new SelectList(db.Categories.Select(x => x.CategoryName));
             int pageSize = 6;
-            var products = db.Products.OrderBy(x => x.ProductName).Include(p => p.Category).Include(p => p.ProductStatu).Include(p => p.Supplier).ToList();
+            var products = db.Products.OrderBy(x => x.ProductName).Include(p => p.Category).Include(p => p.ProductStatu).Include(p => p.Supplier).ToList(); 
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (String.IsNullOrEmpty(searchString) && String.IsNullOrEmpty(categoryFilter))
+            {
+                return View(products.ToPagedList(page, pageSize));
+            }
+            else if (String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(categoryFilter))
+            {
+                products = products.Where(x => x.Category.CategoryName.ToLower() == categoryFilter.ToLower()).ToList();
+                return View(products.ToPagedList(page, pageSize));
+            }
+            else if (!String.IsNullOrEmpty(searchString) && String.IsNullOrEmpty(categoryFilter))
             {
                 products = products.Where(x => x.ProductName.ToLower().Contains(searchString.ToLower())).ToList();
+                return View(products.ToPagedList(page, pageSize));
             }
-
+            else
+            {
+                products = products.Where(x => x.Category.CategoryName == categoryFilter && x.ProductName.ToLower().Contains(searchString.ToLower())).ToList();
+                return View(products.ToPagedList(page, pageSize));
+            }
             ViewBag.SearchString = searchString;
 
-            return View(products.ToPagedList(page, pageSize));
         }
 
         // GET: Products/Details/5

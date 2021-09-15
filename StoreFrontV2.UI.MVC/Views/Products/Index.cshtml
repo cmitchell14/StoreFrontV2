@@ -48,25 +48,18 @@
                 <h2 class="category-menu-heading w-richtext-align-center">Shop by Category</h2>
                 <div class="w-dyn-list">
                     <div role="list" class="w-dyn-items">
-                        <div role="listitem" class="category-menu-item w-dyn-item">
-                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Back Packs</a>
-                            <div><br /></div>
-                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Tents</a>
-                            <div><br /></div>
-                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Clothing</a>
-                            <div><br /></div>
-                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Footwear</a>
-                            <div><br /></div>
-                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Food</a>
-                            <div><br /></div>
-                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Accessories</a>
-                            <div><br /></div>
-                            <a href="index.cshtml" class="btn dark outline cat-menu w-button">Sleeping Bags</a>
-                        </div>
+                        @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+                        {
+                            <div role="listitem" class="category-menu-item w-dyn-item">
+                                @Html.DropDownList("CategoryFilter", null, "Select a Category", new { @class = "form-control" })
+                            </div>
+                            <div>
+                                <input style="padding-top:5px"type="submit" value="Category" class="btn btn-primary" />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-
             <div class="shop-list">
                 <div>
                     @using (Html.BeginForm("Index", "Products", FormMethod.Get))
@@ -81,42 +74,49 @@
                 <div class="products-list-wrapper w-dyn-list">
                     <div role="list" class="products-list w-dyn-items">
 
-                        @foreach (var item in Model)
+                        @if (Model.Count() > 0)
                         {
+                            foreach (var item in Model)
+                            {
 
-                            <div role="listitem" class="w-dyn-item">
+                                <div role="listitem" class="w-dyn-item">
 
-                                <p id="centerText">@Html.DisplayFor(modelItem => item.ProductName)</p>
-                                <div class="shop-item-wrapper">
-                                    <a href="@Url.Action("Details", new { id = item.ProductID })" class="shop-item-link-wrapper w-inline-block">
-                                        <div>
-                                            <img src="~/Content/images/ProductImages/@item.ProdImage" alt="@item.ProductName photo" id="centerPhoto" />
-                                        </div>
-                                        <div>
-                                            <br />
-                                        </div>
-                                        <div class="shop-details-wrapper">
-                                            <div class="shop-details-left">
-                                                <div class="price-wrapper">
-                                                    <div class="shop-item-price">@Html.DisplayFor(modelItem => item.UnitPrice)</div>
+                                    <p id="centerText">@Html.DisplayFor(modelItem => item.ProductName)</p>
+                                    <div class="shop-item-wrapper">
+                                        <a href="@Url.Action("Details", new { id = item.ProductID })" class="shop-item-link-wrapper w-inline-block">
+                                            <div>
+                                                <img src="~/Content/images/ProductImages/@item.ProdImage" alt="@item.ProductName photo" id="centerPhoto" />
+                                            </div>
+                                            <div>
+                                                <br />
+                                            </div>
+                                            <div class="shop-details-wrapper">
+                                                <div class="shop-details-left">
+                                                    <div class="price-wrapper">
+                                                        <div class="shop-item-price">@Html.DisplayFor(modelItem => item.UnitPrice)</div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </a>
+                                        <div class="shop-button-wrapper">
+                                            <a href="@Url.Action("Details", new { id = item.ProductID })" class="btn w-button">Details</a>
                                         </div>
-                                    </a>
-                                    <div class="shop-button-wrapper">
-                                        <a href="@Url.Action("Details", new { id = item.ProductID })" class="btn w-button">Details</a>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="shop-button-wrapper">
+                                                <a href="@Url.Action("Edit", new { id = item.ProductID })" class="btn" id="adminButton">Edit</a>
+                                            </div>
+                                            <div class="shop-button-wrapper">
+                                                <a href="@Url.Action("Delete", new { id = item.ProductID })" class="btn" id="adminButton">Delete</a>
+                                            </div>
+                                        }
                                     </div>
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <div class="shop-button-wrapper">
-                                            <a href="@Url.Action("Edit", new { id = item.ProductID })" class="btn" id="adminButton">Edit</a>
-                                        </div>
-                                        <div class="shop-button-wrapper">
-                                            <a href="@Url.Action("Delete", new { id = item.ProductID })" class="btn" id="adminButton">Delete</a>
-                                        </div>
-                                    }
                                 </div>
-                            </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>No results were found for your search.  Please try again.</p>
                         }
                     </div>
                 </div>

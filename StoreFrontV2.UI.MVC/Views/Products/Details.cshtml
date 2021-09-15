@@ -30,10 +30,19 @@
                 <div>
                     @if (Model.UnitsInStock > 0)
                     {
-                        <form data-node-type="commerce-add-to-cart-form" class="w-commerce-commerceaddtocartform">
+                        @*<form data-node-type="commerce-add-to-cart-form" class="w-commerce-commerceaddtocartform">
                             <label for="quantity-8342fe54ad998bceba4bd86dd02b8e79">Quantity</label>
                             <div class="add-to-cart-page-wrapper"><input type="number" pattern="^[0-9]+$" inputmode="numeric" id="quantity-8342fe54ad998bceba4bd86dd02b8e79" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput input cart-quantity" value="1"><input type="submit" value="Add To Cart" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." class="w-commerce-commerceaddtocartbutton btn outline"></div>
-                        </form>
+                        </form>*@
+
+                        @*Shopping Cart - Step 2: Creat the form/button to supply quantity and add this item to our cart*@
+                        @*signature("action", "controller", routeValue, FormMethod, htmlAttributes)*@
+                        using (Html.BeginForm("AddToCart", "ShoppingCart", new { ProductID = Model.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                        {
+                            <span class="label">Quantity: </span>
+                            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
+                            <input type="submit" value="Add to Cart" class="btn btn-primary" />
+                        }
                     }
                     @if (Model.UnitsInStock <= 0)
                     {

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9ac36f240fde42ab8b341d39d57ba79b" Name="Diagram1">
+      <Diagram DiagramId="31790ef383ed47f0826c62f98f580a35" Name="Diagram1">
         <EntityTypeShape EntityType="StoreFrontModel.Category" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreFrontModel.ContactInformation" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreFrontModel.Department" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="StoreFrontModel.Product" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreFrontModel.ProductStatu" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreFrontModel.Supplier" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <AssociationConnector Association="StoreFrontModel.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Products_Categories1" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Employee_ContactInformation" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Suppliers_ContactInformation" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Employee_Department" ManuallyRouted="false" />

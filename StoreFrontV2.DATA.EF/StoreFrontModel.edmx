@@ -100,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Products_Categories">
+        <Association Name="FK_Products_Categories1">
           <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -108,7 +108,7 @@
               <PropertyRef Name="CategoryID" />
             </Principal>
             <Dependent Role="Products">
-              <PropertyRef Name="StatusID" />
+              <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -164,7 +164,7 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+          <AssociationSet Name="FK_Products_Categories1" Association="Self.FK_Products_Categories1">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
@@ -192,7 +192,7 @@
           </Key>
           <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories1" FromRole="Categories" ToRole="Products" />
         </EntityType>
         <EntityType Name="ContactInformation">
           <Key>
@@ -247,7 +247,7 @@
           <Property Name="SupplierID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProdImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories1" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="ProductStatu" Relationship="Self.FK_Products_ProductStatus" FromRole="Products" ToRole="ProductStatus" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_Products_Suppliers" FromRole="Products" ToRole="Suppliers" />
         </EntityType>
@@ -269,7 +269,7 @@
           <NavigationProperty Name="ContactInformation" Relationship="Self.FK_Suppliers_ContactInformation" FromRole="Suppliers" ToRole="ContactInformation" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_Suppliers" FromRole="Suppliers" ToRole="Products" />
         </EntityType>
-        <Association Name="FK_Products_Categories">
+        <Association Name="FK_Products_Categories1">
           <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -277,7 +277,7 @@
               <PropertyRef Name="CategoryID" />
             </Principal>
             <Dependent Role="Products">
-              <PropertyRef Name="StatusID" />
+              <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,7 +349,7 @@
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="ProductStatus" EntityType="Self.ProductStatu" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
-          <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+          <AssociationSet Name="FK_Products_Categories1" Association="Self.FK_Products_Categories1">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>

@@ -59,9 +59,27 @@
                         </nav>
                         <div>
                             <div data-node-type="commerce-cart-wrapper" data-open-product="" data-wf-cart-type="rightSidebar" data-wf-cart-query="" data-wf-page-link-href-prefix="" class="w-commerce-commercecartwrapper cart-menu">
-                                <a href="#" data-node-type="commerce-cart-open-link" class="w-commerce-commercecartopenlink cart w-inline-block">
-                                    <img src="~/Content/images/cart_1.svg" alt="" class="cart-icon">
-                                    <div class="w-commerce-commercecartopenlinkcount cart-quantity-cart">0</div>
+
+                                @{ 
+                                    //Shopping Cart  - Display Icon & # of items in the cart.
+                                    Dictionary<int, StoreFrontV2.UI.MVC.Models.CartItemViewModel> shoppingCart = (Dictionary<int, StoreFrontV2.UI.MVC.Models.CartItemViewModel>)Session["cart"];
+
+                                    int nbrItems = 0;
+
+                                    if (shoppingCart != null)
+                                    {
+                                        foreach (var item in shoppingCart)
+                                        {
+                                            nbrItems += item.Value.Qty;
+                                        }
+
+                                    }
+
+                                }
+
+                                <a href="@Url.Action("Index", "ShoppingCart")" data-node-type="commerce-cart-open-link" class="w-commerce-commercecartopenlink cart w-inline-block">
+                                    <img src="~/Content/images/cart_1.svg" alt="Shopping Cart Icon" class="cart-icon">
+                                    <div class="w-commerce-commercecartopenlinkcount cart-quantity-cart">@nbrItems</div>
                                 </a>
                                 <div data-node-type="commerce-cart-container-wrapper" style="display:none" class="w-commerce-commercecartcontainerwrapper w-commerce-commercecartcontainerwrapper--cartType-rightSidebar">
                                     <div data-node-type="commerce-cart-container" class="w-commerce-commercecartcontainer">
