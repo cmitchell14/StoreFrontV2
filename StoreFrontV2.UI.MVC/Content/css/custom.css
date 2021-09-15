@@ -4,6 +4,14 @@
  * 2. Prevent iOS and IE text size adjust after device orientation change,
  *    without disabling user zoom.
  */
+
+/*Theme Colors
+
+#9E2B2B
+#3FA9EB
+#eb5757
+
+*/
 html {
     font-family: sans-serif;
     /* 1 */
@@ -394,4 +402,53 @@ th {
 .pageNbrs
 {
     padding-left:150px;
+}
+
+/*Shopping Cart Styling*/
+#backToShop
+{
+    text-decoration: none;
+    color: white;
+}
+
+.btn-info
+{
+    text-decoration: none;
+    color: black;
+}
+
+#table-align
+{
+    text-align: right;
+}
+
+#table-align-center
+{
+    text-align:center;
+}
+
+#shop-header {
+    background-color: black;
+    color: white;
+}
+
+.shop-columns-wrapper {
+    display: block;
+}
+
+.shop-column {
+    width: 18%;
+}
+
+#remove-btn {
+    color: white;
+    text-decoration: none;
+    background-color: #9E2B2B;
+    border-style: solid;
+    border-width: 1px;
+    padding: 1px 5px;
+    font-weight: 500;
+    transition: border-color 300ms ease, background-color 300ms ease;
+    border-color: #9E2B2B;
+    border-radius: 5px;
 }

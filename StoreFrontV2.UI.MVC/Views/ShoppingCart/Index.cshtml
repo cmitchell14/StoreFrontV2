@@ -7,90 +7,112 @@
 
 
 
-<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Back to Shop", "Index", "Products", null, new { @class = "btn btn-info" })
-</p>
 
+<div class="content-section why-acme-sections wf-section" id="shop-header">
+    <div class="container">
+        <div class="about-top-block">
+            <div class="why-acme-block">
+                <h2>@ViewBag.Title</h2>
+                <br />
+                <p style="text-decoration:none">
+                    @Html.ActionLink("Back to Shop", "Index", "Products", null, new { @class = "btn btn-info", @id = "backToShop" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
 
 @{
     decimal? cartTotal = 0;
     int totalCountOfItems = 0;
 }
+<div class="content-section why-acme-sections wf-section">
+    <div class="container">
+        <div class="shop-columns-wrapper">
+            
+                @if (Model.Count == 0)
+                {
+                    <p class="table">
+                        There are no items in your cart.
+                    </p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
 
-@if (Model.Count == 0)
-{
-    <p class="table">
-        There are no items in your cart.
-    </p>
-}
-else
-{
-    <table class="table">
-        <tr>
-            <th>
+                                </th>
+                                <th class="shop-column">
+                                    Product Name
+                                </th>
+                                <th class="shop-column">
+                                    Price
+                                </th>
+                                <th class="shop-column">
+                                    Quantity
+                                </th>
 
-            </th>
-            <th>
-                Product Name
-            </th>
-            <th>
-                Quantity
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                Line Total
-            </th>
-            <th></th>
-        </tr>
+                                <th class="shop-column" id="table-align-center">
+                                    Line Total
+                                </th>
+                                <th class="shop-column"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="shop-column">
+                                        <img src="~/Content/images/ProductImages/t_@item.Value.Product.ProdImage" alt="Picture of @item.Value.Product.ProductName" title="@item.Value.Product.ProductName" />
+                                    </td>
+                                    <td class="shop-column">
+                                        @item.Value.Product.ProductName
+                                    </td>
+                                    <td class="shop-column" id="table-align-center">
+                                        @string.Format($"{item.Value.Product.UnitPrice:c}")
+                                    </td>
+                                    <td class="shop-column" id="table-align">
+                                        @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+                                        {
+                                            @Html.Hidden("productID", item.Key)
+                                            @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width: 25px; display: inline;" })
+                                            <input type="submit" value="Update" class="btn btn-info" />
+                                        }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <img src="~/Content/images/ProductImages/t_@item.Value.Product.ProdImage" alt="Picture of @item.Value.Product.ProductName" title="@item.Value.Product.ProductName" />
-                </td>
-                <td>
-                    @item.Value.Product.ProductName
-                </td>
-                <td>
-                    @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
-                    {
-                        @Html.Hidden("productID", item.Key)
-                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
-                        <input type="submit" value="Update Quantity" class="btn btn-info" />
-                    }
+                                        @{
+                                            //Calculate the running total of items
+                                            totalCountOfItems += item.Value.Qty;
+                                        }
+                                    </td>
 
-                    @{
-                        //Calculate the running total of items
-                        totalCountOfItems += item.Value.Qty;
-                    }
-                </td>
-                <td>
-                    @string.Format($"{item.Value.Product.UnitPrice:c}")
-                </td>
-                <td>
-                    @{
-                        //Calculate line total & update running total variable
-                        decimal? lineTotal = item.Value.Qty * item.Value.Product.UnitPrice;
-                        cartTotal += lineTotal;
-                    }
+                                    <td class="shop-column" id="table-align-center">
+                                        @{
+                                            //Calculate line total & update running total variable
+                                            decimal? lineTotal = item.Value.Qty * item.Value.Product.UnitPrice;
+                                            cartTotal += lineTotal;
+                                        }
 
-                    @string.Format($"{lineTotal:c}")
-                </td>
-                <td>
-                    @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id = item.Key })
-                </td>
-            </tr>
-        }
-
-    </table>
-    <p class="alert alert-success text-center">
-        You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
-        You total before taxes and shipping is: @string.Format($"{cartTotal:c}")
-    </p>
-}
-
+                                        @string.Format($"{lineTotal:c}")
+                                    </td>
+                                    <td class="shop-column">
+                                        <span>@Html.ActionLink("x", "RemoveFromCart", new { id = item.Key }, htmlAttributes: new { id = "remove-btn" })</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <br />
+                    @*<div class="text-center">
+                        <p class="alert alert-success text-center">
+                            You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
+                            You total before taxes and shipping is: @string.Format($"{cartTotal:c}")
+                        </p>
+                    </div>*@
+                }
+            </div>
+        </div>
+    </div>
