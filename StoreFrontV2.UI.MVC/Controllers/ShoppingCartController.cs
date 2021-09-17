@@ -70,6 +70,11 @@ namespace StoreFrontV2.UI.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+
+        //Replacing Delete functionality with AJAX
+
+
+
         //Shopping Cart - UpdateCart action that ccepts the ProductID & Quantity, and updates our Session variable
         public ActionResult UpdateCart(int productId, int qty)
         {

@@ -1,15 +1,35 @@
 ﻿@using Microsoft.AspNet.Identity
+@using StoreFrontV2.DATA.EF
+
+@{ 
+
+    StoreFrontEntities db = new StoreFrontEntities();
+    string userId = User.Identity.GetUserId();
+
+    UserDetail currentUser = db.UserDetails.Find(userId);
+
+    string userFN = "Stranger";
+    string favColor = "#cccccc";
+
+    if (currentUser != null)
+    {
+        userFN = currentUser.FirstName;
+        favColor = currentUser.FavoriteColor;
+    }
+
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav-link w-nav-link" }))
     {
         @Html.AntiForgeryToken()
 
-
+                <a href="javascript:document.getElementById('logoutForm').submit()" id="loginLink" class="nav-link w-nav-link"> Hi @userFN! | Log Out</a>
 
         @*<a href="@Url.Action("LogOff","Account")" id="loginLink" class="nav-link w-nav-link">Log Out</a>*@
 
-        <a href="javascript:document.getElementById('logoutForm').submit()" id="loginLink" class="nav-link w-nav-link">Log Out</a>
+        @*<a href="javascript:document.getElementById('logoutForm').submit()" id="loginLink" class="nav-link w-nav-link">Log Out</a>*@
 
     }
 }

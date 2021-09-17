@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using StoreFrontV2.DATA.EF;
 
 namespace StoreFront.UI.MVC.Controllers
 {
@@ -153,11 +154,29 @@ namespace StoreFront.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    // ---------- Commented out for custom User Details -------------------
+
+                    //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    //ViewBag.Link = callbackUrl;
+                    //return View("DisplayEmail");
+
+                    #region Custom User Details
+
+                    UserDetail userDetail = new UserDetail();
+                    userDetail.UserID = user.Id;
+                    userDetail.FirstName = model.FirstName;
+                    userDetail.LastName = model.LastName;
+                    userDetail.FavoriteColor = model.FavoriteColor;
+
+                    StoreFrontEntities db = new StoreFrontEntities();
+                    db.UserDetails.Add(userDetail);
+                    db.SaveChanges();
+
+                    return View("Login");
+
+                    #endregion
                 }
                 AddErrors(result);
             }

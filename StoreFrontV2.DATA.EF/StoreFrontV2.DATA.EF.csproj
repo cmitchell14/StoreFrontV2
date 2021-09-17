@@ -88,6 +88,9 @@
     <Compile Include="Supplier.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserDetail.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

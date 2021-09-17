@@ -64,6 +64,17 @@ namespace StoreFront.UI.MVC.Models
 
     public class RegisterViewModel
     {
+        //Added for Custom User Details
+        [Required]
+        [StringLength(30, ErrorMessage ="30 character max.")]
+        public string FirstName { get; set; }
+        [Required]
+        [StringLength(30, ErrorMessage = "30 character max.")]
+        public string LastName { get; set; }
+        [Required]
+        [StringLength(7, ErrorMessage = "7 character max.")]
+        public string FavoriteColor { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

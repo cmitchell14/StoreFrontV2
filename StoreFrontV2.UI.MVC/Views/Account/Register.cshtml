@@ -1,6 +1,12 @@
 ﻿@model StoreFront.UI.MVC.Models.RegisterViewModel
+@using StoreFrontV2.DATA.EF
+
+
 @{
     ViewBag.Title = "Register";
+
+
+
 }
 
 
@@ -17,6 +23,14 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "input w-input input w-input", placeholder = "First Name" })
+
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "input w-input input w-input", placeholder = "Last Name" })
+
+
+                        @Html.LabelFor(m => m.FavoriteColor, new { @class = "input w-input input w-input" })
+                        @Html.TextBoxFor(m => m.FavoriteColor, new { @class = "input w-input input w-input", type = "color" })
 
                         @*<label for="name">Name</label><input type="text" class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your name" id="name">*@
                         @Html.TextBoxFor(m => m.Email, new { @class = "input w-input input w-input", placeholder = "Email" })

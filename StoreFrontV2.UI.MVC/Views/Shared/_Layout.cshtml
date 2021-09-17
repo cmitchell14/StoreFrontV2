@@ -19,6 +19,10 @@
     <!--Paged List MVC CSS-->
     <link href="~/Content/css/PagedList.css" rel="stylesheet" />
 
+    @* ADDED jQueryUI CSS CDN - note: themenames are swappable.*@
+    @*NOTE, Module 5 AJAX: find names at jqueryui.com/themeroller, gallyery tab (like excite-bike, south-street or sunny)*@
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css">
+
     <link href="~/Content/css/custom.css" rel="stylesheet" />
     <link href="~/Content/css/normalize.css" rel="stylesheet" type="text/css">
     <link href="~/Content/css/webflow.css" rel="stylesheet" type="text/css">
@@ -60,7 +64,7 @@
                         <div>
                             <div data-node-type="commerce-cart-wrapper" data-open-product="" data-wf-cart-type="rightSidebar" data-wf-cart-query="" data-wf-page-link-href-prefix="" class="w-commerce-commercecartwrapper cart-menu">
 
-                                @{ 
+                                @{
                                     //Shopping Cart  - Display Icon & # of items in the cart.
                                     Dictionary<int, StoreFrontV2.UI.MVC.Models.CartItemViewModel> shoppingCart = (Dictionary<int, StoreFrontV2.UI.MVC.Models.CartItemViewModel>)Session["cart"];
 
@@ -190,9 +194,15 @@
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
     <script src="~/Content/js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
-    
+
+    <!--ADDEDjQuery UI CDN-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- ADDED jQuery Ajax CDN-->
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
