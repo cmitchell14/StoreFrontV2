@@ -40,7 +40,7 @@
 
 <div class="content-section wf-section">
     <div class="container">
-        <div class="shop-page-wrapper">
+        <div class="shop-page-wrapper" id="ProductDiv">
             <div class="row">
 
             </div>
@@ -54,7 +54,7 @@
                                 @Html.DropDownList("CategoryFilter", null, "Select a Category", new { @class = "form-control" })
                             </div>
                             <div>
-                                <input style="padding-top:5px"type="submit" value="Category" class="btn btn-primary" />
+                                <input style="padding-top:5px" type="submit" value="Category" class="btn btn-primary" />
                             </div>
                         }
                     </div>
@@ -82,7 +82,7 @@
                                 <div role="listitem" class="w-dyn-item">
 
                                     <p id="centerText">@Html.DisplayFor(modelItem => item.ProductName)</p>
-                                    <div class="shop-item-wrapper">
+                                    <div class="shop-item-wrapper" id="Product-@item.ProductID">
                                         <a href="@Url.Action("Details", new { id = item.ProductID })" class="shop-item-link-wrapper w-inline-block">
                                             <div>
                                                 <img src="~/Content/images/ProductImages/@item.ProdImage" alt="@item.ProductName photo" id="centerPhoto" />
@@ -107,7 +107,16 @@
                                                 <a href="@Url.Action("Edit", new { id = item.ProductID })" class="btn" id="adminButton">Edit</a>
                                             </div>
                                             <div class="shop-button-wrapper">
+                                                @*Replaced with AJAX*@
                                                 <a href="@Url.Action("Delete", new { id = item.ProductID })" class="btn" id="adminButton">Delete</a>
+                                                @*@Ajax.ActionLink("Delete", "AjaxDelete", "Products", new { id = item.ProductID },
+                                                    new AjaxOptions
+                                                    {
+                                                        HttpMethod = "POST",
+                                                        Confirm = "Are you sure you want to delete this product?",
+                                                        OnSuccess = "deleteConfirmed",
+                                                        OnFailure = "deleteFailed"
+                                                    })*@
                                             </div>
                                         }
                                     </div>
@@ -127,7 +136,22 @@
     </div>
 </div>
 
+@section scripts{
+    <script>
+        //Script for AJAX delete functionality.
+        function deleteConfirmed(response, status, data) {
+            var divID = "#Product-" + response.id;
+            $("ProductDiv").find(divID)
 
+
+            $("#ProductDiv").html("<div class='alert alert-success'>" + response.message + "</div>");
+        }
+    </script>
+
+
+
+
+}
 
 
 

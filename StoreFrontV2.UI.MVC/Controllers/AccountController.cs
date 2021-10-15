@@ -173,7 +173,7 @@ namespace StoreFront.UI.MVC.Controllers
                     StoreFrontEntities db = new StoreFrontEntities();
                     db.UserDetails.Add(userDetail);
                     db.SaveChanges();
-
+                    
                     return View("Login");
 
                     #endregion

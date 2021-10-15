@@ -46,8 +46,6 @@ namespace StoreFrontV2.UI.MVC.Controllers
                 products = products.Where(x => x.Category.CategoryName == categoryFilter && x.ProductName.ToLower().Contains(searchString.ToLower())).ToList();
                 return View(products.ToPagedList(page, pageSize));
             }
-            ViewBag.SearchString = searchString;
-
         }
 
         // GET: Products/Details/5

@@ -204,6 +204,7 @@
   <ItemGroup>
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\shoppingCart.css" />
     <Content Include="Content\css\storefrontproject.webflow.css" />
     <Content Include="Content\css\webflow.css" />
     <Content Include="Content\images\adam-solomon-WHUDOzd5IYU-unsplash-1-1-p-1080.jpeg" />

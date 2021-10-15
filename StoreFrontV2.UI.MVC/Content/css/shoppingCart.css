@@ -1,0 +1,40 @@
+﻿.cartTotal {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.smallShop.btn.btn-info {
+    padding: .25em .75em .5em .75em;
+}
+
+@media only screen and (max-width: 825px) {
+    .cartTotal {
+        text-align: center;
+    }
+
+    .cartText {
+        margin: 1em;
+    }
+
+    .smallShop.btn.btn-info {
+        width: 25px;
+        height: 25px;
+        padding:0;
+        padding-bottom: .25em;
+        font-size: 1em;
+        float: right;
+        margin-top: 1px;
+        margin-left:4px;
+    }
+
+    .cartTitles {
+        font-size: 0em;
+    }
+
+    .smallName {
+        font-size: .9em;
+        text-align:center;
+    }
+
+
+}

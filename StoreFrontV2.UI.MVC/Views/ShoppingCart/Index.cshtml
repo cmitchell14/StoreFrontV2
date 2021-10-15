@@ -31,88 +31,90 @@
 <div class="content-section why-acme-sections wf-section">
     <div class="container">
         <div class="shop-columns-wrapper">
-            
-                @if (Model.Count == 0)
-                {
-                    <p class="table">
-                        There are no items in your cart.
-                    </p>
-                }
-                else
-                {
-                    <table class="table">
-                        <thead>
+
+            @if (Model.Count == 0)
+            {
+                <p class="table">
+                    There are no items in your cart.
+                </p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr class="cartTitles">
+                            <th>
+
+                            </th>
+                            <th class="shop-column">
+                                Product Name
+                            </th>
+                            <th class="shop-column">
+                                Price
+                            </th>
+                            <th class="shop-column">
+                                Quantity
+                            </th>
+
+                            <th class="shop-column" id="table-align-center">
+                                Line Total
+                            </th>
+                            <th class="shop-column"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th>
+                                <td class="shop-column">
+                                    <img src="~/Content/images/ProductImages/t_@item.Value.Product.ProdImage" alt="Picture of @item.Value.Product.ProductName" title="@item.Value.Product.ProductName" />
+                                </td>
+                                <td class="shop-column smallName">
+                                    @item.Value.Product.ProductName
+                                </td>
+                                <td class="shop-column smallName" id="table-align-center">
+                                    @string.Format($"{item.Value.Product.UnitPrice:c}")
+                                </td>
+                                <td class="shop-column" id="table-align">
+                                    @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("productID", item.Key)
+                                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control smallName", style = "max-width: 25px; display: inline;" })
+                                        <input type="submit" value="&#8597;" class="btn btn-info smallShop" />
+                                    }
 
-                                </th>
-                                <th class="shop-column">
-                                    Product Name
-                                </th>
-                                <th class="shop-column">
-                                    Price
-                                </th>
-                                <th class="shop-column">
-                                    Quantity
-                                </th>
+                                    @{
+                                        //Calculate the running total of items
+                                        totalCountOfItems += item.Value.Qty;
+                                    }
+                                </td>
 
-                                <th class="shop-column" id="table-align-center">
-                                    Line Total
-                                </th>
-                                <th class="shop-column"></th>
+                                <td class="shop-column smallName" id="table-align-center">
+                                    @{
+                                        //Calculate line total & update running total variable
+                                        decimal? lineTotal = item.Value.Qty * item.Value.Product.UnitPrice;
+                                        cartTotal += lineTotal;
+                                    }
+
+                                    @string.Format($"{lineTotal:c}")
+                                </td>
+                                <td class="shop-column">
+                                    <span>@Html.ActionLink("x", "RemoveFromCart", new { id = item.Key }, htmlAttributes: new { id = "remove-btn" })</span>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td class="shop-column">
-                                        <img src="~/Content/images/ProductImages/t_@item.Value.Product.ProdImage" alt="Picture of @item.Value.Product.ProductName" title="@item.Value.Product.ProductName" />
-                                    </td>
-                                    <td class="shop-column">
-                                        @item.Value.Product.ProductName
-                                    </td>
-                                    <td class="shop-column" id="table-align-center">
-                                        @string.Format($"{item.Value.Product.UnitPrice:c}")
-                                    </td>
-                                    <td class="shop-column" id="table-align">
-                                        @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
-                                        {
-                                            @Html.Hidden("productID", item.Key)
-                                            @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width: 25px; display: inline;" })
-                                            <input type="submit" value="Update" class="btn btn-info" />
-                                        }
+                        }
+                    </tbody>
+                </table>
+                <br />
 
-                                        @{
-                                            //Calculate the running total of items
-                                            totalCountOfItems += item.Value.Qty;
-                                        }
-                                    </td>
-
-                                    <td class="shop-column" id="table-align-center">
-                                        @{
-                                            //Calculate line total & update running total variable
-                                            decimal? lineTotal = item.Value.Qty * item.Value.Product.UnitPrice;
-                                            cartTotal += lineTotal;
-                                        }
-
-                                        @string.Format($"{lineTotal:c}")
-                                    </td>
-                                    <td class="shop-column">
-                                        <span>@Html.ActionLink("x", "RemoveFromCart", new { id = item.Key }, htmlAttributes: new { id = "remove-btn" })</span>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <br />
-                    @*<div class="text-center">
-                        <p class="alert alert-success text-center">
-                            You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
-                            You total before taxes and shipping is: @string.Format($"{cartTotal:c}")
-                        </p>
-                    </div>*@
-                }
-            </div>
+            }
         </div>
     </div>
+
+</div>
+<div class="w-col-12 cartTotal">
+    <p class="cartText">
+        You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
+        Your total before taxes and shipping is: @string.Format($"{cartTotal:c}")
+    </p>
+</div>
