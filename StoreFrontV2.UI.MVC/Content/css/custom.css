@@ -453,6 +453,16 @@ th {
     border-radius: 5px;
 }
 
-/*.welcome {
-    margin-bottom: 10em;
-}*/
+.dropdown {
+    background-color: #3FA9EB;
+    float: right;
+    margin-right: 3em;
+    display:inline-block;
+}
+
+@media screen and (max-width: 750px) {
+    .dropdown {
+        margin-left: 2em;
+        margin-top: 1em;
+    }
+}

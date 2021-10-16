@@ -56,35 +56,7 @@
 
 
                         </nav>
-                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                        {
 
-                            <div class="dropdown show">
-                                <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Admin Tools
-                                </a>
-
-                                <div class="dropdown-menu dropdow-menu-end" aria-labelledby="dropdownMenu">
-                                    <a href="@Url.Action("Index", "RolesAdmin")" class="dropdown-item">Roles Admin</a>
-                                    <a href="@Url.Action("Index", "UsersAdmin")" class="dropdown-item">Users Admin</a>
-                                    <a href="@Url.Action("Index","Categories")" class="dropdown-item">Categories</a>
-                                    <a href="@Url.Action("Index","ContactInformations")" class="dropdown-item">Contact Information</a>
-                                    <a href="@Url.Action("Index","Departments")" class="dropdown-item">Departments</a>
-                                    <a href="@Url.Action("Index","Employees")" class="dropdown-item">Employees</a>
-                                    <a href="@Url.Action("Index","ProductStatus")" class="dropdown-item">Product Status</a>
-                                    <a href="@Url.Action("Index","Suppliers")" class="dropdown-item">Suppliers</a>
-                                </div>
-                            </div>
-                            @*<a href="@Url.Action("Index", "RolesAdmin")" class="nav-link w-nav-link">Roles Admin</a>
-            <a href="@Url.Action("Index", "UsersAdmin")" class="nav-link w-nav-link">Users Admin</a>
-            <a href="@Url.Action("Index","Categories")" class="nav-link">Categories</a>
-            <a href="@Url.Action("Index","ContactInformations")" class="nav-link">Contact Information</a>
-            <a href="@Url.Action("Index","Departments")" class="nav-link">Departments</a>
-            <a href="@Url.Action("Index","Employees")" class="nav-link">Employees</a>
-            <a href="@Url.Action("Index","ProductStatus")" class="nav-link">Product Status</a>
-            <a href="@Url.Action("Index","Suppliers")" class="nav-link">Suppliers</a>*@
-
-                        }
                         <div>
                             <div data-node-type="commerce-cart-wrapper" data-open-product="" data-wf-cart-type="rightSidebar" data-wf-cart-query="" data-wf-page-link-href-prefix="" class="w-commerce-commercecartwrapper cart-menu">
 
@@ -190,8 +162,31 @@
                     </div>
                 </div>
             </div>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <br />
+                <div class="dropdown show">
+                    <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin Tools
+                    </a>
+
+                    <div class="dropdown-menu dropdow-menu-end" aria-labelledby="dropdownMenu">
+                        <a href="@Url.Action("Index", "RolesAdmin")" class="dropdown-item">Roles Admin</a>
+                        <a href="@Url.Action("Index", "UsersAdmin")" class="dropdown-item">Users Admin</a>
+                        <a href="@Url.Action("Index","Categories")" class="dropdown-item">Categories</a>
+                        <a href="@Url.Action("Index","ContactInformations")" class="dropdown-item">Contact Information</a>
+                        <a href="@Url.Action("Index","Departments")" class="dropdown-item">Departments</a>
+                        <a href="@Url.Action("Index","Employees")" class="dropdown-item">Employees</a>
+                        <a href="@Url.Action("Index","ProductStatus")" class="dropdown-item">Product Status</a>
+                        <a href="@Url.Action("Index","Suppliers")" class="dropdown-item">Suppliers</a>
+                    </div>
+                </div>
+
+            }
         </div>
+
     </div>
+    <div class="clear"></div>
     @RenderBody()
     <div class="footer wf-section">
         <div class="container">
@@ -218,7 +213,6 @@
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
     <script src="~/Content/js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
-
     <!--ADDEDjQuery UI CDN-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

@@ -186,7 +186,7 @@ namespace StoreFrontV2.DATA.EF//Metadata
     [MetadataType(typeof(ProductMetadata))]
     public partial class Product
     {
-
+        public string ShortProduct { get { return ProductName.Substring(0, 5 ); } }
     }
     #endregion
 

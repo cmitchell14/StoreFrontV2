@@ -174,7 +174,7 @@ namespace StoreFront.UI.MVC.Controllers
                     db.UserDetails.Add(userDetail);
                     db.SaveChanges();
                     
-                    return View("Login");
+                    return RedirectToAction("Login");
 
                     #endregion
                 }

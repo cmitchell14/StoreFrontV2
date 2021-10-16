@@ -71,6 +71,12 @@ img {
     display: inline-block;
 }
 
+@media screen and (max-width: 750px) {
+    img {
+        max-width: 250%;
+    }
+}
+
 html.w-mod-touch * {
     background-attachment: scroll !important;
 }
@@ -1960,11 +1966,16 @@ textarea.w-select {
     display: none;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+@media screen and (max-width: 750px) {
+    .w-nav-button {
+        font-size: 30px;
+    }
 }
 
     .w-nav-button:focus {
@@ -2123,3 +2134,4 @@ textarea.w-select {
 .w-condition-invisible {
     display: none !important;
 }
+
