@@ -466,3 +466,10 @@ th {
         margin-top: 1em;
     }
 }
+
+@media screen and (max-width: 750px) {
+    .owner-avater-wrapper img {
+        max-width: 100%;
+    }
+    
+}

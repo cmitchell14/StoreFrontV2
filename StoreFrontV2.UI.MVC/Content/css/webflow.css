@@ -72,7 +72,7 @@ img {
 }
 
 @media screen and (max-width: 750px) {
-    img {
+    .logo img {
         max-width: 250%;
     }
 }
